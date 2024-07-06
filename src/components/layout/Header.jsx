@@ -15,6 +15,15 @@ const Header = () => {
           <Link to="/login" className="mr-4">
             Login
           </Link>
+          <Link to="/profile" className="mr-4">
+            Profile
+          </Link>
+          <Link to="/gadner-panel" className="mr-4">
+            Jardinier
+          </Link>
+          <Link to="/admin-panel" className="mr-4">
+            Admin
+          </Link>
         </nav>
       </div>
     </header>

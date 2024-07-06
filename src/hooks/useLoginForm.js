@@ -3,8 +3,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import axiosInstance from "../services/api/axiosInstance";
 import { loginSchema } from "../utils/validationSchema";
+import useAuth from "../hooks/useAuth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export const useLoginForm = () => {
+  const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const {
     register,
     handleSubmit,
@@ -20,7 +27,12 @@ export const useLoginForm = () => {
         password: data.password,
       });
       console.log(response.data);
+      const { accessToken, roles } = response.data;
+      setAuth({ accessToken, roles });
       toast.success("Connexion réussie!");
+
+      // navigate after success login
+      navigate(from, { replace: true });
     } catch (error) {
       console.error("Erreur lors de la connexion", error);
       toast.error(
