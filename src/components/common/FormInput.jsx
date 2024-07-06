@@ -1,19 +1,5 @@
-import React from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
 
-interface FormInputProps {
-  label: string;
-  type: string;
-  register: UseFormRegisterReturn;
-  error?: string;
-}
-
-const FormInput: React.FC<FormInputProps> = ({
-  label,
-  type,
-  register,
-  error,
-}) => (
+const FormInput = ({ label, type, register, error }) => (
   <div className="flex flex-col space-y-1">
     <label className={` ${error ? "text-red-600" : "text-gray-700"}`}>
       {error || label}

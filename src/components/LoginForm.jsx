@@ -2,7 +2,7 @@ import React from "react";
 import { useLoginForm } from "../hooks/useLoginForm";
 import FormInput from "./common/FormInput";
 
-const LoginForm: React.FC = () => {
+const LoginForm = () => {
   const { register, handleSubmit, errors } = useLoginForm();
 
   return (

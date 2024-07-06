@@ -1,8 +1,7 @@
-import React from "react";
 import FormInput from "./common/FormInput";
 import { useRegisterForm } from "../hooks/useRegisterForm";
 
-const RegisterForm: React.FC = () => {
+const RegisterForm = () => {
   const { register, handleSubmit, errors } = useRegisterForm();
 
   return (

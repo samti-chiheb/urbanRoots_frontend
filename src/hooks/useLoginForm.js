@@ -3,20 +3,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import axiosInstance from "../services/api/axiosInstance";
 import { loginSchema } from "../utils/validationSchema";
-import { z } from "zod";
-
-type LoginFormValues = z.infer<typeof loginSchema>;
 
 export const useLoginForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormValues>({
+  } = useForm({
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: LoginFormValues) => {
+  const onSubmit = async (data) => {
     try {
       const response = await axiosInstance.post("/user/login", {
         identifier: data.identifier,
@@ -24,7 +21,7 @@ export const useLoginForm = () => {
       });
       console.log(response.data);
       toast.success("Connexion réussie!");
-    } catch (error: any) {
+    } catch (error) {
       console.error("Erreur lors de la connexion", error);
       toast.error(
         "Erreur de connexion : " +

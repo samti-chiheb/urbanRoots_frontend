@@ -1,16 +1,15 @@
 import { Routes, Route } from "react-router-dom";
-import Layout from "./components/layout/Layout";
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import UserProfile from "./pages/UserProfile";
-import InteractiveMap from "./pages/InteractiveMap";
-import ExchangePlatform from "./pages/ExchangePlatform";
-import CommunityForums from "./pages/CommunityForums";
-import EducationalModules from "./pages/EducationalModules";
-import EnvironmentalTracking from "./pages/EnvironmentalTracking";
-import Review from "./pages/Review";
-import MissingPage from "./pages/MissingPage";
+import Layout from "./components/layout/Layout.jsx";
+import Home from "./pages/Home.jsx";
+import Register from "./pages/Register.jsx";
+import Login from "./pages/Login.jsx";
+import UserProfile from "./pages/UserProfile.jsx";
+import InteractiveMap from "./pages/InteractiveMap.jsx";
+import ExchangePlatform from "./pages/ExchangePlatform.jsx";
+import CommunityForums from "./pages/CommunityForums.jsx";
+import EducationalModules from "./pages/EducationalModules.jsx";
+import EnvironmentalTracking from "./pages/EnvironmentalTracking.jsx";
+import MissingPage from "./pages/MissingPage.jsx";
 
 function App() {
   return (
@@ -25,7 +24,6 @@ function App() {
         <Route path="/forums" element={<CommunityForums />} />
         <Route path="/education" element={<EducationalModules />} />
         <Route path="/tracking" element={<EnvironmentalTracking />} />
-        <Route path="/review" element={<Review />} />
         <Route path="/*" element={<MissingPage />} />
       </Route>
     </Routes>
