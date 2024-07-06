@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import axiosInstance from "../services/api/axiosInstance";
 import { loginSchema } from "../utils/validationSchema";
 import useAuth from "../hooks/useAuth";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const useLoginForm = () => {
   const { auth, setAuth } = useAuth();
@@ -22,13 +22,20 @@ export const useLoginForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axiosInstance.post("/user/login", {
-        identifier: data.identifier,
-        password: data.password,
-      });
+      const response = await axiosInstance.post(
+        "/user/login",
+        {
+          identifier: data.identifier,
+          password: data.password,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
       console.log(response.data);
-      const { accessToken, roles } = response.data;
-      setAuth({ accessToken, roles });
+      const { accessToken, roles, userInfo } = response.data;
+      setAuth({ accessToken, roles, userInfo });
       toast.success("Connexion réussie!");
 
       // navigate after success login

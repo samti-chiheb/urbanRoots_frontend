@@ -19,37 +19,39 @@ import MissingPage from "./pages/MissingPage";
 import GardnerPanel from "./pages/GardnerPanel";
 import AdminPanel from "./pages/AdminPanel";
 import Unauthorized from "./pages/Unauthorized";
+import PresistLogin from "./components/PresistLogin";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        
         {/* public routes  */}
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
-        {/* user protected routes */}
-        <Route element={<RequireAuth allowedRoles={[9009]} />}>
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/map" element={<InteractiveMap />} />
-          <Route path="/exchange" element={<ExchangePlatform />} />
-          <Route path="/forums" element={<CommunityForums />} />
-          <Route path="/education" element={<EducationalModules />} />
-          <Route path="/tracking" element={<EnvironmentalTracking />} />
+        <Route element={<PresistLogin />}>
+          {/* user protected routes */}
+          <Route element={<RequireAuth allowedRoles={[9009]} />}>
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/map" element={<InteractiveMap />} />
+            <Route path="/exchange" element={<ExchangePlatform />} />
+            <Route path="/forums" element={<CommunityForums />} />
+            <Route path="/education" element={<EducationalModules />} />
+            <Route path="/tracking" element={<EnvironmentalTracking />} />
+          </Route>
+
+          {/* gardner protected routes */}
+          <Route element={<RequireAuth allowedRoles={[4509]} />}>
+            <Route path="/gadner-panel" element={<GardnerPanel />} />
+          </Route>
+
+          {/* admin protected routes */}
+          <Route element={<RequireAuth allowedRoles={[1009]} />}>
+            <Route path="/admin-panel" element={<AdminPanel />} />
+          </Route>
         </Route>
-        
-        {/* gardner protected routes */}
-        <Route element={<RequireAuth allowedRoles={[4509]} />}>
-          <Route path="/gadner-panel" element={<GardnerPanel />} />
-        </Route>
-       
-        {/* admin protected routes */}
-        <Route element={<RequireAuth allowedRoles={[1009]} />}>
-          <Route path="/admin-panel" element={<AdminPanel />} />
-        </Route>
-       
+
         {/* unauthorized page */}
         <Route path="unauthorized" element={<Unauthorized />} />
 

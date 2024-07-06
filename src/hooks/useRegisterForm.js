@@ -16,7 +16,7 @@ export const useRegisterForm = () => {
   const onSubmit = async (data) => {
     try {
       const { confirmPassword, ...userData } = data;
-      const response = await axiosInstance.post("user/register", userData);
+      const response = await axiosInstance.post("/user/register", userData);
       console.log(response.data);
       toast.success(`Utilisateur ${userData.username} créé avec succès !`);
       //toDo : add a login and redirect to welcome page
