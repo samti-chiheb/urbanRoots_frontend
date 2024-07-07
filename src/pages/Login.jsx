@@ -1,4 +1,5 @@
 import LoginForm from "../components/LoginForm";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -7,6 +8,13 @@ const Login = () => {
         Connexion
       </h2>
       <LoginForm />
+      <p className="text-center text-gray-600">
+        Besoin d'un compte ?
+        <br />
+        <span className="underline text-blue-500 hover:text-blue-700">
+          <Link to="/register">Inscrivez-vous</Link>
+        </span>
+      </p>
     </div>
   );
 };

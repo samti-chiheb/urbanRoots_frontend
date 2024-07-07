@@ -1,5 +1,5 @@
-// import PageWrapper from "../components/layout/PageWrapper";
 import RegisterForm from "../components/RegisterForm";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
@@ -8,9 +8,15 @@ const Register = () => {
         S'inscrire
       </h2>
       <RegisterForm />
+      <p className="text-center text-gray-600">
+        Vous avez déjà un compte ?
+        <br />
+        <span className="underline text-blue-500 hover:text-blue-700">
+          <Link to="/login">Se connecter</Link>
+        </span>
+      </p>
     </div>
   );
 };
 
 export default Register;
-// export default PageWrapper(Register, "register");

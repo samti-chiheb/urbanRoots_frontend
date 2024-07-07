@@ -7,7 +7,7 @@ import useAuth from "../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const useLoginForm = () => {
-  const { auth, setAuth } = useAuth();
+  const { setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";

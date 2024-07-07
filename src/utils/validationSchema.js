@@ -8,23 +8,18 @@ export const registerSchema = z
       .string()
       .nonempty({ message: "Le nom d'utilisateur est requis" }),
     email: z.string().email({ message: "Adresse email invalide" }),
-    password: z
-      .string()
-      .min(6, {
-        message: "Le mot de passe doit contenir au moins 6 caractères",
-      }),
-    confirmPassword: z
-      .string()
-      .min(6, {
-        message:
-          "La confirmation du mot de passe doit contenir au moins 6 caractères",
-      }),
+    password: z.string().min(6, {
+      message: "Le mot de passe doit contenir au moins 6 caractères",
+    }),
+    confirmPassword: z.string().min(6, {
+      message:
+        "La confirmation du mot de passe doit contenir au moins 6 caractères",
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Les mots de passe ne correspondent pas",
     path: ["confirmPassword"],
   });
-
 
 export const loginSchema = z.object({
   identifier: z
@@ -33,4 +28,5 @@ export const loginSchema = z.object({
   password: z
     .string()
     .min(6, { message: "Le mot de passe doit contenir au moins 6 caractères" }),
+  persist: z.boolean().optional(),
 });
