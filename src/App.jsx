@@ -11,15 +11,11 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import UserProfile from "./pages/UserProfile";
 import InteractiveMap from "./pages/InteractiveMap";
-import ExchangePlatform from "./pages/ExchangePlatform";
-import CommunityForums from "./pages/CommunityForums";
-import EducationalModules from "./pages/EducationalModules";
-import EnvironmentalTracking from "./pages/EnvironmentalTracking";
 import MissingPage from "./pages/MissingPage";
-import GardnerPanel from "./pages/GardnerPanel";
 import AdminPanel from "./pages/AdminPanel";
 import Unauthorized from "./pages/Unauthorized";
 import PresistLogin from "./components/PresistLogin";
+import Forums from "./components/Forum/Forums";
 
 function App() {
   return (
@@ -29,21 +25,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forums/*" element={<Forums />} />
+        <Route path="/map" element={<InteractiveMap />} />
 
         <Route element={<PresistLogin />}>
           {/* user protected routes */}
           <Route element={<RequireAuth allowedRoles={[9009]} />}>
             <Route path="/profile" element={<UserProfile />} />
-            <Route path="/map" element={<InteractiveMap />} />
-            <Route path="/exchange" element={<ExchangePlatform />} />
-            <Route path="/forums" element={<CommunityForums />} />
-            <Route path="/education" element={<EducationalModules />} />
-            <Route path="/tracking" element={<EnvironmentalTracking />} />
-          </Route>
-
-          {/* gardner protected routes */}
-          <Route element={<RequireAuth allowedRoles={[4509]} />}>
-            <Route path="/gadner-panel" element={<GardnerPanel />} />
           </Route>
 
           {/* admin protected routes */}
