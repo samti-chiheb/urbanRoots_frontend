@@ -1,4 +1,5 @@
 import useAxiosPrivate from "../useAxiosPrivate";
+import { useMutation } from "@tanstack/react-query";
 import {
   createPost,
   updatePost,
@@ -22,20 +23,15 @@ const usePostActions = () => {
     return await deletePost(postId, axiosPrivate);
   };
 
-  const likeExistingPost = async (postId) => {
-    return await likePost(postId, axiosPrivate);
-  };
-
-  const dislikeExistingPost = async (postId) => {
-    return await dislikePost(postId, axiosPrivate);
-  };
+  const likeMutation = useMutation((postId) => likePost(postId));
+  const dislikeMutation = useMutation((postId) => dislikePost(postId));
 
   return {
     createNewPost,
     updateExistingPost,
     deleteExistingPost,
-    likeExistingPost,
-    dislikeExistingPost,
+    likeMutation,
+    dislikeMutation,
   };
 };
 

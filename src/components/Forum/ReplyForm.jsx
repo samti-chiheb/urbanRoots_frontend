@@ -3,27 +3,36 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import { commentSchema } from "../../utils/validationSchema";
 import FormInput from "../common/FormInput";
-
+import useComments from "../../hooks/forumHooks/useComments";
 
 const ReplyForm = ({ postId }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(commentSchema),
   });
 
-  const onSubmit = async (data) => {
-    try {
-      const response = await axiosInstance.post(
-        `/posts/${postId}/comments`,
-        data
-      );
-      toast.success("Commentaire posté avec succès !");
-    } catch (error) {
-      toast.error(`Erreur : ${error.response?.data?.message || error.message}`);
-    }
+  const { createCommentMutation } = useComments(postId);
+
+  const onSubmit = (data) => {
+    console.log(data);
+    createCommentMutation.mutate(
+      { postId, ...data },
+      {
+        onSuccess: () => {
+          toast.success("Commentaire posté avec succès !");
+          reset();
+        },
+        onError: (error) => {
+          toast.error(
+            `Erreur : ${error.response?.data?.message || error.message}`
+          );
+        },
+      }
+    );
   };
 
   return (
@@ -31,7 +40,7 @@ const ReplyForm = ({ postId }) => {
       <FormInput
         label="Comment"
         type="text"
-        register={register("text")}
+        register={register("content")}
         error={errors.text?.message}
       />
       <button

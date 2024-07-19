@@ -32,11 +32,11 @@ export const loginSchema = z.object({
 });
 
 export const postSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  description: z.string().min(1, "Description is required"),
+  title: z.string().min(1, "Le titre est requis"),
+  content: z.string().min(1, "La description est requise"),
   tags: z.string().optional(),
 });
 
 export const commentSchema = z.object({
-  text: z.string().min(1, "Comment is required"),
+  content: z.string().min(1, "Le commentaire est requis"),
 });

@@ -2,10 +2,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import { postSchema } from "../../utils/validationSchema";
-import FormInput from "../common/FormInput";
+import { useParams, useNavigate } from "react-router-dom";
+import FormInput from "../../components/common/FormInput";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
-const CreatePostForm = ({ forumId }) => {
+const CreatePostForm = () => {
   const {
     register,
     handleSubmit,
@@ -13,17 +14,17 @@ const CreatePostForm = ({ forumId }) => {
   } = useForm({
     resolver: zodResolver(postSchema),
   });
-
-
   const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+
+  const { forumId } = useParams();
 
   const onSubmit = async (data) => {
+    const postData = { ...data, forumId };
     try {
-      const response = await axiosPrivate.post(
-        `/forums/${forumId}/posts`,
-        data
-      );
+      const response = await axiosPrivate.post(`/posts`, postData);
       toast.success("Post créé avec succès !");
+      navigate(`/forums/posts/${response.data._id}`);
     } catch (error) {
       toast.error(`Erreur : ${error.response?.data?.message || error.message}`);
     }
@@ -40,7 +41,7 @@ const CreatePostForm = ({ forumId }) => {
       <FormInput
         label="Description"
         type="text"
-        register={register("description")}
+        register={register("content")}
         error={errors.description?.message}
       />
       <FormInput
