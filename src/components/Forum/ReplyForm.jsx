@@ -36,7 +36,7 @@ const ReplyForm = ({ postId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="mt-4 w-[75%]">
       <FormInput
         label="Comment"
         type="text"

@@ -9,13 +9,14 @@ import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import UserProfile from "./pages/UserProfile";
+import UserProfile from "./pages/Profile";
 import InteractiveMap from "./pages/InteractiveMap";
 import MissingPage from "./pages/MissingPage";
 import AdminPanel from "./pages/AdminPanel";
 import Unauthorized from "./pages/Unauthorized";
 import PresistLogin from "./components/PresistLogin";
 import Forums from "./pages/forum/Forums";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
 
           {/* user protected routes */}
           <Route element={<RequireAuth allowedRoles={[9009]} />}>
-            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
 
           {/* admin protected routes */}

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getPostsByForum } from "../../services/api/postService";
-import getRandomSoftColor from "../../utils/getRandomColor";
 
 const ForumCard = ({ forum }) => {
   const postNum = 3;
@@ -58,10 +57,7 @@ const ForumCard = ({ forum }) => {
         <h3 className="text-md font-bold">Categories</h3>
         <div className="flex flex-wrap">
           {forum.categories?.map((category) => (
-            <p
-              key={category._id}
-              className={`w-auto p-2 rounded text-[${getRandomSoftColor()}]`}
-            >
+            <p key={category._id} className={`w-auto p-2 rounded`}>
               {category.name}
             </p>
           ))}

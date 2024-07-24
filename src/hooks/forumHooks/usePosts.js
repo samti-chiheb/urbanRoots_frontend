@@ -5,6 +5,7 @@ import {
   dislikePost,
 } from "../../services/api/postService";
 import useAxiosPrivate from "../useAxiosPrivate";
+import handleApiErrors from "../../utils/handleApiErrors";
 
 const usePosts = (forumId) => {
   const queryClient = useQueryClient();
@@ -26,6 +27,7 @@ const usePosts = (forumId) => {
     onSuccess: () => {
       queryClient.invalidateQueries(["posts", forumId]);
     },
+    onError: handleApiErrors,
   });
 
   // Mutation pour disliker un post
@@ -34,6 +36,7 @@ const usePosts = (forumId) => {
     onSuccess: () => {
       queryClient.invalidateQueries(["posts", forumId]);
     },
+    onError: handleApiErrors,
   });
 
   return { posts, isLoading, error, likeMutation, dislikeMutation };

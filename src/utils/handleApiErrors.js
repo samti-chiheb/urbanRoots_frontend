@@ -1,31 +1,20 @@
-const handleApiErrors = (status) => {
-  
-  let errorMessage = "";
+// src/utils/errorHandler.js
+import { toast } from "react-toastify";
 
-  switch (status) {
-    case 400:
-      errorMessage = "Données invalides.";
-      break;
-    case 401:
-      errorMessage = "Non authentifié.";
-      break;
-    case 403:
-      errorMessage = "Accès refusé.";
-      break;
-    case 404:
-      errorMessage = "Non trouvé.";
-      break;
-    case 500:
-      errorMessage = "Erreur serveur.";
-      break;
-    case 503:
-      errorMessage = "Service indisponible.";
-      break;
-    default:
-      errorMessage = "Erreur inconnue.";
+const handleApiErrors = (error) => {
+  let errorMessage = "Une erreur inconnue est survenue";
+
+  if (error.response) {
+    if (error.response.data && error.response.data.message) {
+      errorMessage = error.response.data.message;
+    } else {
+      errorMessage = `Erreur serveur : ${error.response.statusText}`;
+    }
+  } else if (error.message) {
+    errorMessage = error.message;
   }
 
-  return errorMessage;
+  toast.error(errorMessage);
 };
 
 export default handleApiErrors;

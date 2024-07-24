@@ -8,6 +8,7 @@ import {
   downvoteComment,
 } from "../../services/api/commentService";
 import useAxiosPrivate from "../useAxiosPrivate";
+import handleApiErrors from "../../utils/handleApiErrors";
 
 const useComments = (postId) => {
   const queryClient = useQueryClient();
@@ -29,6 +30,7 @@ const useComments = (postId) => {
     onSuccess: () => {
       queryClient.invalidateQueries(["comments", postId]);
     },
+    onError: handleApiErrors,
   });
 
   // Mutation pour mettre à jour un commentaire
@@ -38,6 +40,7 @@ const useComments = (postId) => {
     onSuccess: () => {
       queryClient.invalidateQueries(["comments", postId]);
     },
+    onError: handleApiErrors,
   });
 
   // Mutation pour supprimer un commentaire
@@ -46,6 +49,7 @@ const useComments = (postId) => {
     onSuccess: () => {
       queryClient.invalidateQueries(["comments", postId]);
     },
+    onError: handleApiErrors,
   });
 
   // Mutation pour upvoter un commentaire
@@ -54,6 +58,7 @@ const useComments = (postId) => {
     onSuccess: () => {
       queryClient.invalidateQueries(["comments", postId]);
     },
+    onError: handleApiErrors,
   });
 
   // Mutation pour downvoter un commentaire
@@ -62,6 +67,7 @@ const useComments = (postId) => {
     onSuccess: () => {
       queryClient.invalidateQueries(["comments", postId]);
     },
+    onError: handleApiErrors,
   });
 
   return {

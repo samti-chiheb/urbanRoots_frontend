@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PostItem from "../../components/Forum/PostItem";
-import { getPostsByForum } from "../../services/api/postService";
 import { getOneForumById } from "../../services/api/forumService";
 import { PlusCircleIcon, SearchIcon } from "@heroicons/react/outline";
 import useAuth from "../../hooks/useAuth";
@@ -12,8 +11,7 @@ const PostList = () => {
   const { auth } = useAuth();
   const { forumId } = useParams();
   const navigate = useNavigate();
-  const { posts, isLoading, error, likeMutation, dislikeMutation } =
-    usePosts(forumId);
+  const { posts, isLoading, error } = usePosts(forumId);
 
   const [forum, setForum] = useState();
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,7 +25,7 @@ const PostList = () => {
         setForum(forumRes);
       } catch (error) {
         console.error(error);
-      } 
+      }
     };
     fetchPostsByForum();
   }, [forumId]);
@@ -140,14 +138,7 @@ const PostList = () => {
             Aucun Post trouvé.
           </p>
         ) : (
-          filteredPosts?.map((post) => (
-            <PostItem
-              key={post._id}
-              post={post}
-              likeMutation={likeMutation}
-              dislikeMutation={dislikeMutation}
-            />
-          ))
+          filteredPosts?.map((post) => <PostItem key={post._id} post={post} />)
         )}
       </div>
     </div>

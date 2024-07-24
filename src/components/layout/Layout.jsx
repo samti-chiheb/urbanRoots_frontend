@@ -8,7 +8,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <main className="container mx-auto flex-grow p-4">
+      <main className="container mx-auto flex-grow p-4 pt-20">
         <ToastContainer />
         <Outlet />
       </main>
