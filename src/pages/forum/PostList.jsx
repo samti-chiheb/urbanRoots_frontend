@@ -11,7 +11,7 @@ const PostList = () => {
   const { auth } = useAuth();
   const { forumId } = useParams();
   const navigate = useNavigate();
-  const { posts, isLoading, error } = usePosts(forumId);
+  const { posts, isLoading } = usePosts(forumId);
 
   const [forum, setForum] = useState();
   const [searchTerm, setSearchTerm] = useState("");
