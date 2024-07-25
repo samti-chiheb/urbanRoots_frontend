@@ -33,7 +33,6 @@ export const useLoginForm = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data);
       const { accessToken, roles, userInfo } = response.data;
       setAuth({ accessToken, roles, userInfo });
       toast.success("Connexion réussie!");

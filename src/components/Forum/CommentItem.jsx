@@ -45,7 +45,6 @@ const CommentItem = ({ comment }) => {
 
   const handleDelete = () => {
     deleteComment.mutate(comment._id);
-    console.log("deleted", comment._id);
   };
 
   const handleUpdate = () => {

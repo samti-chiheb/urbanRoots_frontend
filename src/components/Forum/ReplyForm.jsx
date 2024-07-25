@@ -18,7 +18,6 @@ const ReplyForm = ({ postId }) => {
   const { createCommentMutation } = useComments(postId);
 
   const onSubmit = (data) => {
-    console.log(data);
     createCommentMutation.mutate(
       { postId, ...data },
       {

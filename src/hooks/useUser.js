@@ -1,4 +1,3 @@
-// src/hooks/useUser.js
 import { useMutation } from "@tanstack/react-query";
 import {
   updateUserInfo,

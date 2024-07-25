@@ -1,5 +1,5 @@
 const config = {
-  apiBaseUrl: "http://localhost:3500",
+  apiBaseUrl: "https://urbanroots-backend.onrender.com",
 };
 
 export default config;

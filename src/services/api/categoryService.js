@@ -13,7 +13,6 @@ export const getAllCategories = async () => {
 export const getOneCategory = async (categoryId) => {
   try {
     const response = await axios.get(`/forum-categories/${categoryId}`);
-    console.log(response.data, categoryId);
     return response.data;
   } catch (error) {
     handleApiErrors(error);

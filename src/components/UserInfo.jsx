@@ -1,5 +1,5 @@
 // src/components/UserInfo.jsx
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   UserIcon,
   MailIcon,

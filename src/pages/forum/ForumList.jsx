@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ForumCard from "../../components/forum/ForumCard";
 import { getAllCategories } from "../../services/api/categoryService";
 import { getForums } from "../../services/api/forumService";
@@ -32,7 +32,7 @@ const ForumList = () => {
 
   const filteredForums = selectedCategory
     ? forums.filter((forum) =>
-        forum.categories.some((cat) => cat._id === selectedCategory)
+        forum?.categories.some((cat) => cat?._id === selectedCategory)
       )
     : forums;
 
@@ -46,14 +46,14 @@ const ForumList = () => {
           className="border p-2"
         >
           <option value="">Toutes les catégories</option>
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <option key={category._id} value={category._id}>
               {category.name}
             </option>
           ))}
         </select>
       </div>
-      {filteredForums.length > 0 ? (
+      {filteredForums?.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredForums.map((forum) => (
             <ForumCard key={forum._id} forum={forum} />
