@@ -9,14 +9,16 @@ import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import UserProfile from "./pages/Profile";
-import InteractiveMap from "./pages/InteractiveMap";
-import MissingPage from "./pages/MissingPage";
-import AdminPanel from "./pages/AdminPanel";
-import Unauthorized from "./pages/Unauthorized";
-import PresistLogin from "./components/PresistLogin";
-import Forums from "./pages/forum/Forums";
 import Profile from "./pages/Profile";
+import Forums from "./pages/forum/Forums";
+import GardenListAndMap from "./pages/GardenListAndMap";
+import AddGarden from "./pages/AddGarden";
+import UpdateGarden from "./pages/UpdateGarden";
+import AdminPanel from "./pages/AdminPanel";
+
+import Unauthorized from "./pages/Unauthorized";
+import MissingPage from "./pages/MissingPage";
+import PresistLogin from "./components/PresistLogin";
 
 function App() {
   return (
@@ -28,11 +30,13 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forums/*" element={<Forums />} />
-          <Route path="/map" element={<InteractiveMap />} />
+          <Route path="/gardens" element={<GardenListAndMap />} />
 
           {/* user protected routes */}
           <Route element={<RequireAuth allowedRoles={[9009]} />}>
             <Route path="/profile" element={<Profile />} />
+            <Route path="/create-garden" element={<AddGarden />} />
+            <Route path="/update-garden/:gardenId" element={<UpdateGarden />} />
           </Route>
 
           {/* admin protected routes */}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import PostItem from "../../components/Forum/PostItem";
+import PostItem from "../../components/forum/PostItem";
 import { getOneForumById } from "../../services/api/forumService";
 import { PlusCircleIcon, SearchIcon } from "@heroicons/react/outline";
 import useAuth from "../../hooks/useAuth";

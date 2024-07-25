@@ -3,7 +3,7 @@ import ForumList from "./ForumList";
 import PostList from "./PostList";
 import PostDetails from "./PostDetails";
 import CreatePostForm from "./CreatePostForm";
-import ReplyForm from "../../components/Forum/ReplyForm";
+import ReplyForm from "../../components/forum/ReplyForm";
 import RequireAuth from "../../auth/RequireAuth";
 
 const Forums = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ForumCard from "../../components/Forum/ForumCard";
+import ForumCard from "../../components/forum/ForumCard";
 import { getAllCategories } from "../../services/api/categoryService";
 import { getForums } from "../../services/api/forumService";
 

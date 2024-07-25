@@ -34,11 +34,12 @@ const icons = {
   LinkedIn: <FaLinkedin className="h-6 w-6 text-blue-700" />,
 };
 
-const UserInfo = ({ label, value, onSave, error }) => {
+const UserInfo = ({ label, value, onSave }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputValue] = useState(value);
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [error, setError] = useState("");
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);

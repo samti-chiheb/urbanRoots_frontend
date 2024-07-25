@@ -3,10 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { postSchema } from "../../utils/validationSchema";
-import CommentList from "../../components/Forum/CommentList";
-import ReplyForm from "../../components/Forum/ReplyForm";
+import CommentList from "../../components/forum/CommentList";
+import ReplyForm from "../../components/forum/ReplyForm";
 import usePost from "../../hooks/forumHooks/usePost";
-import PostInteraction from "../../components/Forum/PostInteraction";
+import PostInteraction from "../../components/forum/PostInteraction";
 import {
   PencilIcon,
   TrashIcon,

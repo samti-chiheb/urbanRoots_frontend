@@ -71,3 +71,21 @@ export const usernameSchema = z
 export const passwordSchema = z.string().min(6, {
   message: "Le mot de passe doit contenir au moins 6 caractères.",
 });
+
+export const websiteSchema = z.string().refine(
+  (url) => {
+    const regex =
+      /^(http:\/\/|https:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/.*)?$/;
+    return regex.test(url);
+  },
+  {
+    message: "URL invalide",
+  }
+);
+
+export const socialLinksSchema = z.object({
+  twitter: websiteSchema.optional(),
+  facebook: websiteSchema.optional(),
+  instagram: websiteSchema.optional(),
+  linkedin: websiteSchema.optional(),
+});

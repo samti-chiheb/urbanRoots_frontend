@@ -18,7 +18,6 @@ const useUser = () => {
 
   const updateUser = useMutation({
     mutationFn: async (userData) => {
-      console.log(userData);
       const updatedData = await updateUserInfo(userData, axiosPrivate);
       return updatedData;
     },
