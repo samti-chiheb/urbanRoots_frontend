@@ -5,7 +5,6 @@ import { getPostsByForum } from "../../services/api/postService";
 const ForumCard = ({ forum }) => {
   const postNum = 3;
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const initComponent = async () => {
@@ -14,8 +13,6 @@ const ForumCard = ({ forum }) => {
         setPosts(postsRes);
       } catch (error) {
         handleApiErrors(error);
-      } finally {
-        setLoading(false);
       }
     };
 

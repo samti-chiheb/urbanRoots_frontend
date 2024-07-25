@@ -6,7 +6,6 @@ import { getForums } from "../../services/api/forumService";
 const ForumList = () => {
   const [categories, setCategories] = useState([]);
   const [forums, setForums] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
@@ -18,9 +17,7 @@ const ForumList = () => {
         setForums(forumsRes);
       } catch (error) {
         console.error("Erreur lors de la récupération des catégories :", error);
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
 
     initComponent();
