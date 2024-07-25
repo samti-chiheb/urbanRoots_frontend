@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-import useGarden from "../hooks/useGarden";
-import useAuth from "../hooks/useAuth";
+import useGarden from "../../hooks/useGarden";
+import useAuth from "../../hooks/useAuth";
 
 const GardenDetails = ({ selectedGarden }) => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const GardenDetails = ({ selectedGarden }) => {
     }
   };
 
-  const isCreator = auth.userInfo.id === author._id;
+  const isCreator = auth?.userInfo.id === author?._id;
 
   return (
     <div className="p-4">
@@ -52,7 +52,7 @@ const GardenDetails = ({ selectedGarden }) => {
       </div>
       <div className="mb-4">
         <h3 className="text-lg font-semibold">Créé par</h3>
-        <p>{author.username}</p>
+        <p>{author?.username}</p>
       </div>
       <div className="mb-4">
         <h3 className="text-lg font-semibold">Créé le</h3>

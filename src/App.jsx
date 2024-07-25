@@ -10,10 +10,15 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+
 import Forums from "./pages/forum/Forums";
-import GardenListAndMap from "./pages/GardenListAndMap";
-import AddGarden from "./pages/AddGarden";
-import UpdateGarden from "./pages/UpdateGarden";
+
+// gadren pages
+import GardenListAndMap from "./pages/garden/GardenListAndMap";
+import AddGarden from "./pages/garden/AddGarden";
+import UpdateGarden from "./pages/garden/UpdateGarden";
+
+// other pages
 import AdminPanel from "./pages/AdminPanel";
 
 import Unauthorized from "./pages/Unauthorized";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import useGarden from "../hooks/useGarden";
+import useGarden from "../../hooks/useGarden";
 
 const UpdateGarden = () => {
   const { gardenId } = useParams();

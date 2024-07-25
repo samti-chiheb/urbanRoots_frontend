@@ -28,9 +28,6 @@ const ForumList = () => {
 
   const handleChange = (e) => {
     setSelectedCategory(e.target.value);
-    console.log("====================================");
-    console.log(forums[1]);
-    console.log("====================================");
   };
 
   const filteredForums = selectedCategory

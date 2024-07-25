@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AddressForm from "../components/AddressForm";
-import Map from "../components/Map";
-import useGarden from "../hooks/useGarden";
+import AddressForm from "../../components/garden/AddressForm";
+import Map from "../../components/garden/Map";
+import useGarden from "../../hooks/useGarden";
 
 const AddGarden = () => {
   const [formData, setFormData] = useState({
