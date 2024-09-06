@@ -4,6 +4,7 @@ import PostList from "./PostList";
 import PostDetails from "./PostDetails";
 import CreatePostForm from "./CreatePostForm";
 import RequireAuth from "../../auth/RequireAuth";
+import ForumForm from "./ForumForm";
 
 const Forums = () => {
   return (
@@ -14,6 +15,10 @@ const Forums = () => {
         <Route path="/posts/:postId" element={<PostDetails />} />
         <Route element={<RequireAuth allowedRoles={[9009, 4509, 1009]} />}>
           <Route path="/:forumId/create-post" element={<CreatePostForm />} />
+        </Route>
+        <Route element={<RequireAuth allowedRoles={[9009]} />}>
+          <Route path="/create-forum" element={<ForumForm />} />
+          <Route path="/:forumId/update" element={<ForumForm />} />
         </Route>
       </Routes>
     </div>

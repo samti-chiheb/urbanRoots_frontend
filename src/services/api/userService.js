@@ -1,12 +1,6 @@
-import handleApiErrors from "../../utils/handleApiErrors";
-
 export const updateUserInfo = async (userData, axiosPrivate) => {
-  try {
-    const response = await axiosPrivate.put("user/update-info", userData);
-    return response.data;
-  } catch (error) {
-    handleApiErrors(error);
-  }
+  const response = await axiosPrivate.put("user/update-info", userData);
+  return response.data;
 };
 
 export const updateUsername = async (usernameData, axiosPrivate) => {

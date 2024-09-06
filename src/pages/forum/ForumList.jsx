@@ -1,44 +1,38 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ForumCard from "../../components/forum/ForumCard";
-import { getAllCategories } from "../../services/api/categoryService";
-import { getForums } from "../../services/api/forumService";
+import useForums from "../../hooks/forumHooks/useForums";
+import useCategories from "../../hooks/forumHooks/useCategories";
+import { Link } from "react-router-dom";
 
 const ForumList = () => {
-  const [categories, setCategories] = useState([]);
-  const [forums, setForums] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
-
-  useEffect(() => {
-    const initComponent = async () => {
-      try {
-        const categoriesRes = await getAllCategories();
-        setCategories(categoriesRes);
-        const forumsRes = await getForums();
-        setForums(forumsRes);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des catégories :", error);
-      } 
-    };
-
-    initComponent();
-  }, []);
+  const { forums } = useForums();
+  const { categories } = useCategories();
+  const [selectedCategoryId, setSelectedCategoryId] = useState("");
 
   const handleChange = (e) => {
-    setSelectedCategory(e.target.value);
+    setSelectedCategoryId(e.target.value);
   };
 
-  const filteredForums = selectedCategory
+  const filteredForums = selectedCategoryId
     ? forums.filter((forum) =>
-        forum?.categories.some((cat) => cat?._id === selectedCategory)
+        forum?.categories.some((cat) => cat?._id === selectedCategoryId)
       )
     : forums;
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Aperçu du Forum</h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-3xl font-bold">Aperçu du Forum</h1>
+        <Link
+          to="/forums/create-forum"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Créer Forum
+        </Link>
+      </div>
       <div className="mb-4">
         <select
-          value={selectedCategory}
+          value={selectedCategoryId}
           onChange={handleChange}
           className="border p-2"
         >

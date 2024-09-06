@@ -11,6 +11,7 @@ const CreatePostForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    d
   } = useForm({
     resolver: zodResolver(postSchema),
   });

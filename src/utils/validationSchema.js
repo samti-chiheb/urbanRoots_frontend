@@ -89,3 +89,9 @@ export const socialLinksSchema = z.object({
   instagram: websiteSchema.optional(),
   linkedin: websiteSchema.optional(),
 });
+
+export const forumSchema = z.object({
+  title: z.string().min(1, "Le titre est obligatoire"),
+  description: z.string().min(1, "La description est obligatoire"),
+  category: z.string().min(1, "Au moins une catégorie est obligatoire"),
+});
