@@ -3,6 +3,16 @@ import useAuth from "../../hooks/useAuth";
 import useLogout from "../../hooks/useLogout";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import {
+  FaSignOutAlt,
+  FaUser,
+  FaHome,
+  FaSeedling,
+  FaComments,
+  FaUserShield,
+  FaExchangeAlt,
+  FaEnvelope,
+} from "react-icons/fa";
 
 const Header = () => {
   const { auth } = useAuth();
@@ -23,12 +33,18 @@ const Header = () => {
     setMenuOpen(false);
   };
 
+  const getActiveClass = (path) => {
+    return window.location.pathname === path
+      ? "text-indigo-600 font-bold"
+      : "text-gray-700";
+  };
+
   return (
-    <header className="fixed top-0 w-full bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 z-50">
+    <header className="fixed top-0 w-full bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 z-50 shadow-lg">
       <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
         <h1
           onClick={() => navigate("/")}
-          className="text-xl font-bold cursor-pointer text-gray-800 dark:text-white"
+          className="text-2xl font-bold cursor-pointer text-gray-800 dark:text-white"
         >
           Urban Roots
         </h1>
@@ -52,13 +68,13 @@ const Header = () => {
             </>
           ) : (
             <button
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4"
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4 flex items-center"
               onClick={() => {
                 signOut();
                 closeMenu();
               }}
             >
-              Logout
+              <FaSignOutAlt className="mr-2" /> Logout
             </button>
           )}
           <button
@@ -85,7 +101,7 @@ const Header = () => {
           </button>
         </div>
         <div
-          className={`lg:flex flex-col lg:flex-row lg:items-center w-full lg:w-auto lg:order-1 ${
+          className={`lg:flex flex-col lg:flex-row lg:items-center w-full lg:w-auto lg:order-1 transition-all duration-300 ease-in-out ${
             menuOpen ? "block" : "hidden"
           }`}
           id="mobile-menu"
@@ -95,47 +111,86 @@ const Header = () => {
               <Link
                 to="/"
                 onClick={closeMenu}
-                className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                className={`flex items-center block py-2 pr-4 pl-3 ${getActiveClass(
+                  "/"
+                )} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700`}
               >
-                Accueil
+                <FaHome className="mr-2" /> Accueil
               </Link>
             </li>
             <li>
               <Link
                 to="/forums"
                 onClick={closeMenu}
-                className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                className={`flex items-center block py-2 pr-4 pl-3 ${getActiveClass(
+                  "/forums"
+                )} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700`}
               >
-                Forums
+                <FaComments className="mr-2" /> Forums
               </Link>
             </li>
             <li>
               <Link
                 to="/gardens"
                 onClick={closeMenu}
-                className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                className={`flex items-center block py-2 pr-4 pl-3 ${getActiveClass(
+                  "/gardens"
+                )} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700`}
               >
-                Jardins
+                <FaSeedling className="mr-2" /> Jardins
               </Link>
             </li>
             <li>
               <Link
-                to="/profile"
+                to="/exchanges"
                 onClick={closeMenu}
-                className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                className={`flex items-center block py-2 pr-4 pl-3 ${getActiveClass(
+                  "/exchanges"
+                )} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700`}
               >
-                Profile {auth?.userInfo.username}
+                <FaExchangeAlt className="mr-2" /> Echanges
               </Link>
             </li>
-            <li>
-              <Link
-                to="/admin-panel"
-                onClick={closeMenu}
-                className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-              >
-                Admin
-              </Link>
-            </li>
+            {auth?.roles?.includes(1009) && (
+              <>
+                <li>
+                  <Link
+                    to="/messages"
+                    onClick={closeMenu}
+                    className={`flex items-center block py-2 pr-4 pl-3 ${getActiveClass(
+                      "/messages"
+                    )} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700`}
+                  >
+                    <FaEnvelope className="mr-2" /> Conversations
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/profile"
+                    onClick={closeMenu}
+                    className={`flex items-center block py-2 pr-4 pl-3 ${getActiveClass(
+                      "/profile"
+                    )} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700`}
+                  >
+                    <FaUser className="mr-2" />
+                    {auth?.userInfo?.username}
+                  </Link>
+                </li>
+              </>
+            )}
+            {auth?.roles?.includes(9009) && (
+              <li>
+                <Link
+                  to="/admin-panel"
+                  onClick={closeMenu}
+                  className={`flex items-center block py-2 pr-4 pl-3 ${getActiveClass(
+                    "/admin-panel"
+                  )} border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700`}
+                >
+                  <FaUserShield className="mr-2" /> Admin
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

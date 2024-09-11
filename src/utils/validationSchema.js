@@ -95,3 +95,18 @@ export const forumSchema = z.object({
   description: z.string().min(1, "La description est obligatoire"),
   category: z.string().min(1, "Au moins une catégorie est obligatoire"),
 });
+
+export const exchangeSchema = z.object({
+  title: z
+    .string()
+    .min(1, "Le titre est obligatoire")
+    .max(100, "Le titre ne peut pas dépasser 100 caractères"),
+  description: z
+    .string()
+    .min(1, "La description est obligatoire")
+    .max(500, "La description ne peut pas dépasser 500 caractères"),
+  category: z.string().min(1, "La catégorie est obligatoire"),
+  location: z.string().min(1, "La localisation est obligatoire"),
+  imageUrl: z.string().optional(),
+  status: z.string().optional(),
+});
