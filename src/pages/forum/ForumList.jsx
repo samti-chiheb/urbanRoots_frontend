@@ -3,11 +3,13 @@ import ForumCard from "../../components/forum/ForumCard";
 import useForums from "../../hooks/forumHooks/useForums";
 import useCategories from "../../hooks/forumHooks/useCategories";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const ForumList = () => {
   const { forums } = useForums();
   const { categories } = useCategories();
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
+  const { auth } = useAuth();
 
   const handleChange = (e) => {
     setSelectedCategoryId(e.target.value);
@@ -19,16 +21,22 @@ const ForumList = () => {
       )
     : forums;
 
+    console.log('====================================');
+    console.log(auth);
+    console.log('====================================');
+
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold">Aperçu du Forum</h1>
-        <Link
-          to="/forums/create-forum"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Créer Forum
-        </Link>
+        {auth?.roles == 9009 && (
+          <Link
+            to="/forums/create-forum"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Créer Forum
+          </Link>
+        )}
       </div>
       <div className="mb-4">
         <select
